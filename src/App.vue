@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+<beth-header></beth-header>
+
+      <el-container>
+      <el-main>   <router-view/></el-main>
+    </el-container>
+    <el-footer></el-footer>
+
+
+
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import {Other} from './common/index'
+import BethHeader from "./components/BethHeader";
 export default {
-  name: 'App',
+  name: 'rootPage',
   components: {
-    HelloWorld
+    BethHeader
+  },
+  created(){
+// 获取数据
+    this.$api.getData().then((res)=>{
+      console.log('res',res)
+    })
+
+//调用公有方法
+    Other.globalFun()
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style lang="scss" scoped></style>
