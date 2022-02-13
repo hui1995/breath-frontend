@@ -18,6 +18,7 @@ module.exports = {
     	env: {
             TYPE: JSON.stringify('prod'),
             ...com
-    	}
+    	},
+        assetsPublicPath: './'
     }
 }

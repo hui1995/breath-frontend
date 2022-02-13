@@ -4,7 +4,9 @@
 <beth-header></beth-header>
 
       <el-container>
-      <el-main>   <router-view/></el-main>
+      <el-main>
+        <router-view/>
+      </el-main>
     </el-container>
     <el-footer></el-footer>
 
@@ -20,15 +22,6 @@ export default {
   name: 'rootPage',
   components: {
     BethHeader
-  },
-  created(){
-// 获取数据
-    this.$api.getData().then((res)=>{
-      console.log('res',res)
-    })
-
-//调用公有方法
-    Other.globalFun()
   }
 }
 </script>
