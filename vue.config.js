@@ -8,7 +8,7 @@ const resolve = dir =>{return path.join(__dirname, dir)}
 
 module.exports = {
     publicPath:'./',
-    outputDir:'build',
+    outputDir:'dist',
     assetsDir:'',
     productionSourceMap:node_env==='production'?false:true,
     css:{

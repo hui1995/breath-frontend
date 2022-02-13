@@ -48,8 +48,8 @@ export default {
   name: "download",
   data(){
     return{
-      url:'http://www.cssmoban.com/wpthemes/8932.shtml',
-      serect:'q'
+      url:'',
+      serect:''
     }
   },
   methods:{
@@ -79,7 +79,7 @@ export default {
            message: data.msg,
            type: 'success'
          });
-         api.downloadMobanNext(data.data)
+         api.downloadMobanNext(data.data,this.url)
        }
       })
 

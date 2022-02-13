@@ -6,7 +6,8 @@ function postRequest(url,method,data){
     return request({url,method,data})
 }
 
-let Path = 'http://localhost:9091'
+let Path = 'http://www.breathcoder.cn/api'
+let SourcePath = 'http://www.breathcoder.cn/source'
 
 export default{
     // get
@@ -21,8 +22,9 @@ export default{
         return postRequest(Path+'/download/moban','post',data)
 
     },
-    downloadMobanNext(url){
-        return getRequest(url,'get')
+    downloadMobanNext(id,url){
+       var  data={"id":id,"url":url}
+        return postRequest(SourcePath+"/download",'post',data)
 
     }
 }
