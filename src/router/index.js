@@ -1,21 +1,33 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 import Download from '../views/Download.vue'
 import Idea from '../views/Idea.vue'
-
+import SourceList from '../views/SourceList'
+import Home from '../views/Home'
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/download/',
     name: 'Download',
     component: Download
   },
   {
-    path: '/idea',
+    path: '/idea/',
     name: 'Idea',
     component: Idea
+  },
+  {
+    path: '/muban/:cate',
+    name: 'SourceList',
+    component: SourceList
+
+  },
+  {
+    path: '/',
+    name: 'Home',
+    component: Home
+
   },
   {
     path: '/demo',
