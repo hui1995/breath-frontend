@@ -2,32 +2,49 @@
   <div class="home">
     <div>
 
-      <el-container >
 
 
-        <el-row>
+        <el-row  :gutter="10">
 
-          <el-col :span="16" offset="4">
+          <el-col  :xs="24" :sm="{span:20,offset:2}" :md="{span:20,offset:2}" :lg="{span:20,offset:2}"  :xl="{span:16,offset:4}" >
             <el-row>
-      <el-col :span="6" v-for="item in sourceList">
-        <div style="margin:20px">
+      <el-col :xs="24" :sm="12" :md="8" :lg="6"  v-for="item in sourceList" :key="item.id">
+        <div style=";width:280px;margin: 0 auto;margin-top: 40px;min-height:280px">
+          <el-skeleton :rows="5" animated :loading="loading" >
+            <router-link :to="{name:'SourceDetail',params:{id:item.id}}">
         <el-card :body-style="{ padding: '0px' }">
-          <img src="https://img.bethmeta.com/online/2022-02-10/16444749175623.jpg" class="image">
+          <img :src="item.image" class="image" style="width:100%">
           <div style="padding: 14px;">
-            <span>蓝色高斯背景企业产品展示模板</span>
+            <span>{{item.title}}</span>
             <div class="bottom clearfix" style="text-align:left">
-<!--              <time class="time">0</time>-->
-<!--              <time class="time">0</time>-->
+
             </div>
           </div>
         </el-card>
+            </router-link>
+          </el-skeleton>
 
         </div>
       </el-col>
+
             </el-row>
+            <div style="margin-top: 30px">
+
+
+              <el-pagination
+                  background
+                  layout="prev, pager, next"
+                  :current-page="currentPage"
+                  :page-size="20"
+                  @current-change="handleCurrentChange"
+                  @prev-click="handleCurrentChange"
+                  @next-click="handleCurrentChange"
+                  :total="toatl_page">
+              </el-pagination>
+            </div>
+
       </el-col>
         </el-row>
-      </el-container>
     </div>
   </div>
 </template>
@@ -39,70 +56,51 @@ export default {
   name: 'SourceList',
   data(){
     return{
+      loading: true,
       sourceList:[
-        {
-          title:"23",
-          imgurl:"547",
-          view:"548",
-          like:"89"
-        },   {
-          title:"23",
-          imgurl:"547",
-          view:"548",
-          like:"89"
-        },   {
-          title:"23",
-          imgurl:"547",
-          view:"548",
-          like:"89"
-        },
-        {
-          title:"23",
-          imgurl:"547",
-          view:"548",
-          like:"89"
-        },   {
-          title:"23",
-          imgurl:"547",
-          view:"548",
-          like:"89"
-        },   {
-          title:"23",
-          imgurl:"547",
-          view:"548",
-          like:"89"
-        },   {
-          title:"23",
-          imgurl:"547",
-          view:"548",
-          like:"89"
-        }
-      ]
+      ],
+      page:1,
+      pagesize:16,
+      cate:"",
+      toatl_page:1,
+      currentPage:1
 
     }
   },
+  watch: {
+    '$route' (to, from) { //监听路由是否变化
+      if(this.$route.params.cate){//判断id是否有值
+        //调数据
+        this.getSourceList(this.$route.params.cate,this.page,this.pagesize)
+      }
+    }
+  },
   methods: {
-    load () {
-      this.count += 2
-      console.log('ege3464')
 
-    },
 
-    sourceList(cate,page,pagesize){
+
+    getSourceList(cate,page,pagesize){
+      this.cate=cate
+      this.loading=true
 
       api.sourceList(cate,page,pagesize).then(data=>{
-
-        console.log(data)
+        this.sourceList=data['data']['data'];
+        this.toatl_page=data['data']['total_page']
+        this.currentPage=data['data']['page']
+        this.loading=false
       })
 
-  }
-  },created() {
-    // var cate=this.$router.params
-    var cate=this.$route.params.cate
 
-    console.log(cate)
-    // var cate="web"
-    this.sourceList(cate,1,20)
+  }, handleCurrentChange(val){
+      this.getSourceList(this.cate,val,this.pagesize)
+
+
+
+    }
+  }
+  ,created() {
+    this.cate=this.$route.params.cate
+    this.getSourceList(this.cate,this.page,this.pagesize)
   }
 }
 </script>

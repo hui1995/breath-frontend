@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Download from '../views/Download.vue'
 import Idea from '../views/Idea.vue'
 import SourceList from '../views/SourceList'
+import SourceDetail from '../views/SourceDetail'
 import Home from '../views/Home'
 Vue.use(VueRouter)
 
@@ -24,20 +25,16 @@ const routes = [
 
   },
   {
+    path: '/detail/:id',
+    name: 'SourceDetail',
+    component: SourceDetail
+
+  },
+  {
     path: '/',
     name: 'Home',
     component: Home
 
-  },
-  {
-    path: '/demo',
-    name: 'demo',
-    component: () => import(/* webpackChunkName: "otherPageName" */ '../components/Demo.vue')
-  },
-  {
-    path: '*',
-    name: '404',
-    component: () => import(/* webpackChunkName: "404" */ '../components/Demo.vue')
   }
 ]
 
