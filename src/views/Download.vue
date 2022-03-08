@@ -54,10 +54,19 @@ export default {
   },
   methods:{
     downloadInfo(){
-      if (this.url===""||this.serect===""){
+      // if (this.url===""||this.serect===""){
+      //   this.$message({
+      //     showClose: true,
+      //     message: '网址或者密钥不能为空',
+      //     type: 'error'
+      //   });
+      //   return
+      //
+      // }
+      if (this.url===""){
         this.$message({
           showClose: true,
-          message: '网址或者密钥不能为空',
+          message: '网址不能为空',
           type: 'error'
         });
         return
@@ -70,16 +79,17 @@ export default {
        if (data.code===50){
          this.$message({
            showClose: true,
-           message: data.msg,
+           message: data.message,
            type: 'error'
          });
        }else{
          this.$message({
            showClose: true,
-           message: data.msg,
+           message: data.message,
            type: 'success'
          });
-         api.downloadMobanNext(data.data,this.url)
+         console.log(data.data.data)
+         api.downloadMobanNext(data.data.data)
        }
       })
 

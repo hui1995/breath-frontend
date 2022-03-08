@@ -20,14 +20,13 @@ export default{
         return postRequest(Path+'/octokit.rb','post',data)
     },
     downloadMoban(data){
-        return postRequest(Path+'/download/moban','post',data)
+        return postRequest(Path+'/download/muban','post',data)
 
     },
-    // downloadMobanNext(id,url){
-    //    var  data={"id":id,"url":url}
-    //     return postRequest(SourcePath+"/download",'post',data)
-    //
-    // }
+    downloadMobanNext(url){
+        return postRequest(url,'get')
+
+    },
 
     sourceList(category,page,pagesize){
         return getRequest(Path+'/source/list/'+category+"/"+page+"/"+pagesize,'get')

@@ -20,7 +20,7 @@
                 <h3> {{sourceDetail.title}}</h3>
               </div>
 
-              <el-button type="success">点击下载</el-button>
+              <a :href="sourceDetail.zip_url">   <el-button type="success">点击下载</el-button></a>
 
             </el-col>
           </el-row>
