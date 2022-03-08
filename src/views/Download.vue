@@ -21,11 +21,11 @@
             <template slot="prepend">网址：</template>
           </el-input>
         </div>
-        <div style="margin-top: 15px;">
-          <el-input placeholder="请输入16位的卡密" v-model="serect">
-            <template slot="prepend">卡密：</template>
-          </el-input>
-        </div>
+<!--        <div style="margin-top: 15px;">-->
+<!--          <el-input placeholder="请输入16位的卡密" v-model="serect">-->
+<!--            <template slot="prepend">卡密：</template>-->
+<!--          </el-input>-->
+<!--        </div>-->
 
         <div style="margin-top: 20px">
             <el-button type="success" @click="downloadInfo()" style="width: 60%"   >点击下载</el-button>

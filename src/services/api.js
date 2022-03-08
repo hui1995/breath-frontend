@@ -6,8 +6,8 @@ function postRequest(url,method,data){
     return request({url,method,data})
 }
 
-// let Path = 'http://www.bethmeta.com/api'
-let Path = 'http://127.0.0.1:5000'
+let Path = 'https://api.bethmeta.com'
+// let Path = 'http://127.0.0.1:5000'
 // let SourcePath = 'http://www.breathcoder.cn/source'
 
 export default{
